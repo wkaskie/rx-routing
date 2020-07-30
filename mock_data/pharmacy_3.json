@@ -1,0 +1,11 @@
+{
+  "pharmacy": "Drugaide",
+  "inventory": [
+    { "cost": 2, "drug": "Ruxapam" },
+    { "cost": 10, "drug": "Gethighanol" },
+    { "cost": 3, "drug": "Ropeadope" },
+    { "cost": 5, "drug": "Steriods" },
+    { "cost": 18, "drug": "Amnetivil" },
+    { "cost": 2.5, "drug": "Moreaseptic" }
+  ]
+}

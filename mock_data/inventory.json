@@ -1,0 +1,40 @@
+{
+  "message": "Inventory",
+  "data": [
+    {
+      "pharmacy": "Waldrugs",
+      "inventory": [
+        { "cost": 1, "drug": "Ruxapam" },
+        { "cost": 12, "drug": "Waynazine" },
+        { "cost": 18, "drug": "Funnacil" },
+        { "cost": 9, "drug": "Gethighanol" },
+        { "cost": 4, "drug": "Steriods" },
+        { "cost": 3, "drug": "Moreaseptic" }
+      ]
+    },
+    {
+      "pharmacy": "Druggreens",
+      "inventory": [
+        { "cost": 2, "drug": "Ruxapam" },
+        { "cost": 11, "drug": "Waynazine" },
+        { "cost": 17, "drug": "Funnacil" },
+        { "cost": 10, "drug": "Gethighanol" },
+        { "cost": 5, "drug": "Ropeadope" },
+        { "cost": 3, "drug": "Steriods" },
+        { "cost": 9, "drug": "Amnetivil" },
+        { "cost": 6, "drug": "Moreaseptic" }
+      ]
+    },
+    {
+      "pharmacy": "Drugaide",
+      "inventory": [
+        { "cost": 1, "drug": "Ruxapam" },
+        { "cost": 10, "drug": "Gethighanol" },
+        { "cost": 3, "drug": "Ropeadope" },
+        { "cost": 5, "drug": "Steriods" },
+        { "cost": 18, "drug": "Amnetivil" },
+        { "cost": 2.5, "drug": "Moreaseptic" }
+      ]
+    }
+  ]
+}

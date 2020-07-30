@@ -1,0 +1,13 @@
+{
+  "pharmacy": "Druggreens",
+  "inventory": [
+    { "cost": 2, "drug": "Ruxapam" },
+    { "cost": 11, "drug": "Waynazine" },
+    { "cost": 17, "drug": "Funnacil" },
+    { "cost": 10, "drug": "Gethighanol" },
+    { "cost": 5, "drug": "Ropeadope" },
+    { "cost": 3, "drug": "Steriods" },
+    { "cost": 9, "drug": "Amnetivil" },
+    { "cost": 6, "drug": "Moreaseptic" }
+  ]
+}
