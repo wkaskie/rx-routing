@@ -70,6 +70,6 @@ app.get('/inventory', (req, res) => {
 
 // Start up the server
 app.listen(port, () => {
-    console.log(`Server stared. Listening on port ${port}`);
+    console.log(`Server started. Listening on port ${port}`);
     tester.startTest(`http://localhost:${port}`);
 });

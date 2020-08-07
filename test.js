@@ -20,7 +20,8 @@ const startTest = (baseUri) => {
     baseUrl = baseUri;
     // Post a fake order to the /assign endpoint to retrieve the list of assignments
     const orders = JSON.parse(fs.readFileSync('./mock_data/fakeOrders.json'))
-    orders.forEach(runTest);
+    runTest(orders[0]);
+    // orders.forEach(runTest);
 }
 
 module.exports = {

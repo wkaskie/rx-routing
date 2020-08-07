@@ -6,6 +6,7 @@
 
 import { Order } from './interfaces/Order';
 import { PharmacyType } from './pharmacy';
+import { orderOptions } from './orderOptions';
 
 const axios = require('axios');
 const { Pharmacy } = require('./pharmacy');
@@ -66,6 +67,12 @@ const serializeAssignments = (assignmentList: interimAssignment[]) => {
 const assign = async (order: Order) => {
     const { orderNumber, items } = order;
     const availableInventory = await getInventory(); // A list of all pharmacies and their inventories
+    
+    const options = orderOptions();
+    const allPossibleOrders = options.setOrderOptions(order, availableInventory);
+    options.findBestCombination(items, allPossibleOrders)
+    return;
+    
     let assignment: interimAssignment[] = [];
     let starterAssignment: interimAssignment = {
         name: '',
