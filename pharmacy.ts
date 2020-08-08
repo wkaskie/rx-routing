@@ -19,7 +19,7 @@ export class Pharmacy {
   _name = '';
   _inventory: InventoryItem[] = [];
   _inventoryHash: itemHash = {}; // Create a hashMap for O(1) time complexity
-  _shippingCost: number | null = null;
+  _shippingCost: number | undefined = undefined;
 
   set inventory(newInventory) { // update the local array, but also create a quick access HashMap
     this._inventory = newInventory;
@@ -40,6 +40,14 @@ export class Pharmacy {
   get name() {
     return this._name;
   }
+  
+  get shipping() {
+    return this._shippingCost;
+  }
+
+  set shipping(shipping: number | undefined) {
+    this._shippingCost = shipping;
+  }
 
   findDrug(drugName: string): InventoryItem {
     return this._inventoryHash[drugName];
@@ -53,7 +61,7 @@ export class Pharmacy {
 
   estimateOrderCost(orderItems: OrderItem[]) {
     if (!this._shippingCost) {
-      this._shippingCost = Math.floor(Math.random() * 20) + 10;
+      this._shippingCost = this.name.length;
     }
     return orderItems.reduce((sum: number, item) => 
         sum + this.findDrug(item.drug).cost * (item?.quantity || 0), 0) + this._shippingCost;

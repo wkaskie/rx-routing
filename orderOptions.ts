@@ -1,125 +1,207 @@
 /* Doing a little functional composition
    no tactical reason, just switching things
    up for demonstration purposes.
+
+   Helper factory for generating and comparing order options
 */
 
 import { Order } from "./interfaces/Order";
 import { Pharmacy } from "./pharmacy";
 import { OrderItem } from "./interfaces/OrderItem";
-import { userInfo } from "os";
-import { stringify } from "querystring";
 
 export interface orderCombo {
   pharmacy: string;
   inventory: OrderItem[];
+  shipping?: number;
   total: number;
 }
 
-export const orderOptions = () => {
+export interface assignment {
+  grandTotal: number;
+  orderNumber?: number;
+  orders: orderCombo[];
+}
+
+export const orderOptionsHelper = () => {
+  // Keep these for the life of the function (per Rx)
+  let orderCount: number = 0;
+  let orderNum = 0;
+  let allOrderCombinations: Map<string, orderCombo[]>;
   // Create a map of all drug/pharmacy options
   const setOrderOptions = (order: Order, inventory: Pharmacy[]) => {
-    const allOrderCombos = new Map<string, orderCombo[]>();
+    allOrderCombinations = new Map<string, orderCombo[]>();
     const { items: drugs, orderNumber } = order;
+    orderNum = orderNumber;
+    orderCount = drugs.length;
     const maxLen = Math.pow(2, drugs.length); // possible combinations count
     drugs.sort((a, b) =>
       a.drug.toLowerCase() < b.drug.toLowerCase() ? -1 : 1
-    );
+    ); // sort the drug names to ensure uniquness and completeness
 
     for (var i = 0; i < maxLen; i++) {
-      let temp = "";
-      let qty = 0;
-      for (var j = 0; j < drugs.length; j++) {
-        // Use bitwise comparison to grab only true when
+      let mapKey = ""; // Will be a list of drugs purchased together from a single pharmacy
+      for (var j = 0; j < orderCount; j++) {
+        // Use bitwise comparison to eval only true when
         // the binary pattern matches our "unique" state
         if (i & Math.pow(2, j)) {
-          temp += drugs[j].drug + " ";
-          qty = drugs[j].quantity;
+          mapKey += drugs[j].drug + " "; // Track each combo as a string key
         }
       }
-      if (temp !== "") {
-        const newDrugCombos = inventory.map((p) => {
-          const emptyArray: OrderItem[] = [];
-          const drugList = p.inventory.reduce((inv, drug) => {
-            if (temp.indexOf(drug.drug) !== -1) {
-              // Remove drugs that are not part of this order
-              // if this drug is one we're looking for
-              inv.push({ ...drug, order: orderNumber, quantity: qty });
+      if (mapKey !== "") {
+        const keyDrugCount = mapKey.trim().split(" ").length; // how many drugs in this "key"
+        // match the potential orderable combinations with pharmacies' inventory
+        // estimate the total for later comparison
+        const newDrugCombos = inventory.map((pharmacy) => {
+          const drugList = pharmacy.inventory.reduce((inv, drug) => {
+            if (mapKey.indexOf(drug.drug) !== -1) {
+              // if this drug is one we're looking for, keep it
+              const qty = order.items.find(i => i.drug === drug.drug)?.quantity;
+              inv.push({ ...drug, order: orderNumber, quantity: qty || 0 });
             }
             return inv;
-          }, emptyArray);
-          const orderCost = p.estimateOrderCost(drugList);
-          return { pharmacy: p.name, inventory: drugList, total: orderCost };
+          }, [] as OrderItem[]);
+          const orderCost = pharmacy.estimateOrderCost(drugList);
+          return {
+            pharmacy: pharmacy.name,
+            inventory: drugList,
+            total: orderCost,
+            shipping: pharmacy.shipping
+          };
         });
-        allOrderCombos.set(temp, newDrugCombos);
+        const withInventory = newDrugCombos.filter(
+          (oC) => oC.inventory.length === keyDrugCount
+        );
+        if (withInventory.length > 0) {
+          // store only if this pharmacy has all drugs in the mapKey
+          allOrderCombinations.set(mapKey, withInventory);
+        } else {
+            const unSourcedItem: OrderItem = { drug: 'na', order: orderNum, quantity: 0 };
+            const cannotBeSourcedCombo: orderCombo[] = [{pharmacy: 'None', inventory: [unSourcedItem], total: 0, shipping: 0}];
+            allOrderCombinations.set(mapKey, cannotBeSourcedCombo)
+        }
       }
     }
-    console.dir(allOrderCombos, { depth: 2 });
-    return allOrderCombos;
+    // console.dir(allOrderCombinations, { depth: 5 }); // log all order possibilities
   };
 
-  const getBestPricedOption = (allCombos: Map<string, orderCombo[]>, orderOptionKey: string) => {
-    return allCombos
-    .get(orderOptionKey)
-    ?.reduce((lowest, opt) => (opt.total < lowest.total ? opt : lowest)) || {} as orderCombo;
-  }
+  const getBestPricedOption = (orderOptionKey: string) => {
+    const pharms = allOrderCombinations.get(orderOptionKey);
+    return (
+      pharms?.reduce((lowest, opt) =>
+        opt.total < lowest.total ? opt : lowest
+      ) || ({} as orderCombo)
+    );
+  };
 
-  const createAssignment = (
-    orderCount: number,
-    optionKey: string,
-    remainingOptions: string[],
-    allOrderCombinations: Map<string, orderCombo[]>
+  // Recursively identify order assignements
+  const createAssignments = (
+    optionKeys: string[],
+    remainingOptions: string[]
   ) => {
-    let assignment: orderCombo[] = [];
-    let drugsMatchedSoFar = optionKey.trim().split(" ");
-
+    // if the optionKeys are for the whole order, return it as an assignment
+    const drugCount = optionKeys.reduce(
+      (count, drug) => count + drug.trim().split(" ").length,
+      0
+    );
+    if (drugCount === orderCount) return [optionKeys]; // this optionKey is for the entire order at one pharmacy
+    let assignmentList: string[][] = [];
     // loop to complete the order with enough items
-    for (let d = 0; d < remainingOptions.length && drugsMatchedSoFar.length < orderCount; d++) {
-      // Add drugs until we have them all
-      const opt = remainingOptions[d];
-      const comboArray = opt.trim().split(" ");
-      if (
-        comboArray.filter((c) => drugsMatchedSoFar.includes(c)).length === 0
-      ) {
-        // if we can use this order combo, track it and get the full order option
-        drugsMatchedSoFar = [...drugsMatchedSoFar, ...comboArray];
-        assignment.push(getBestPricedOption(allOrderCombinations, remainingOptions[d]));
-      } // keep looking for a usable match
+    for (let o = 0; o < remainingOptions.length; o++) {
+      const opt = remainingOptions.slice(o)[0];
+      if (opt) {
+        const comboArray = opt.trim().split(" "); // Create array of drugs from this order option key
+        const drugsAlreadyInTheCombo = comboArray.filter((c) => {
+          const arrayOfKeys = optionKeys.map((k) => k.trim().split(" ")); // Turn key strings to arrays of drugs
+          const arrayCheck = [""].concat.apply([], arrayOfKeys); // flatten the array
+          return arrayCheck.includes(c); // Keep this option if it is in both the new option and original
+        });
+
+        if (drugsAlreadyInTheCombo.length === 0) {
+          // the new opt has no drugs that are already accounted for
+          // if we can use this order combo, track it and
+          // keep looking until the order is full
+          const drugsMatchedSoFar = [...optionKeys, opt];
+          const drugCount = drugsMatchedSoFar.reduce(
+            (count, drug) => count + drug.trim().split(" ").length,
+            0
+          );
+          if (drugCount < orderCount && remainingOptions.length > 0) {
+            // There are more options to try to make a full order
+            const assgnmt = createAssignments(
+              drugsMatchedSoFar,
+              remainingOptions.slice(1)
+            );
+            assignmentList = [...assignmentList, ...assgnmt]; // spread instead of push in case assgnmt is []
+          } else {
+            assignmentList.push(drugsMatchedSoFar);
+          }
+        } // keep looking for a usable match
+      } // If no option, do nothing
     }
-    
+    // after an order is fully filled, return that list
+    return assignmentList;
   };
 
-  const findBestCombination = (
-    order: OrderItem[],
-    allCombos: Map<string, orderCombo[]>
-  ) => {
+  const createOrderOptions = (order: OrderItem[]): string[][][] => {
+    // Given the possible drug orders,
+    // Pair up drug options that will create a full order
+    // That is, each drug in the Rx filled once per order
+    const allCombos: string[][][] = []; // hold all options as strings to match the Map keys
     order.forEach((drugItem) => {
-      // Get all options for this drug
+      // Get all order options for this drug
       // and separate it from all options that do NOT include this drug
       const allDrugItemOptions: string[] = [];
       const allCombineableOptions: string[] = [];
-      Array.from(allCombos.keys()).forEach((comboName) => {
+      Array.from(allOrderCombinations.keys()).forEach((comboName) => {
         if (comboName.indexOf(drugItem.drug) !== -1) {
           allDrugItemOptions.push(comboName);
         } else {
           allCombineableOptions.push(comboName);
         }
       });
-      // Remove the combineable options that have drugs that we've already accounted for
-    //   const usableComboOptions = allCombineableOptions.filter((otherOption) =>
-    //     allDrugItemOptions.map((d) => d.trim().split(" ").includes(otherOption))
-    //   );
-      console.log(drugItem.drug);
 
       allDrugItemOptions.forEach((option) => {
         // Match combos of this drug with options w/out this drug
-        // let drugsMatchedSoFar = option.trim().split(" "); // The drugItem option
-        let lowestOption = getBestPricedOption(allCombos, option);
-        let assignment = [lowestOption]; // a list of pharmacy order combinations
-        let otherOptions = createAssignment(order.length, option, allCombineableOptions, allCombos);
-        console.log("ASSIGNMENT: ", option, assignment);
+        let orderOptions = createAssignments([option], allCombineableOptions);
+        allCombos.push(orderOptions);
       });
     });
+    return allCombos;
   };
 
-  return { setOrderOptions, findBestCombination };
+  const findBestPricedCombination = (
+    allAssignmentCombinations: string[][][]
+  ): assignment | undefined => {
+    // TODO: De-dupe the array
+    // Flatten the array
+    const allOptions = [[""]].concat.apply([[""]], allAssignmentCombinations);
+    // console.log("ALL: ", allOptions); // Log all possible orderable combinations
+    let bestPrice = 99999999;
+    let bestOrder: assignment = { grandTotal: 0, orders: [] };
+    let bestPricedOption: orderCombo;
+    allOptions.forEach((orderCombo) => {
+    // console.log(orderCombo);
+      if (orderCombo[0].length > 0) {
+        const starterOrderCombo = { grandTotal: 0, orders: [] as orderCombo[] };
+        const comboOrder = orderCombo.reduce((acc, order) => {
+          bestPricedOption = getBestPricedOption(order);
+        // console.log(bestPricedOption); // Log the best option for a given "key"
+          acc.orders.push(bestPricedOption);
+          acc.grandTotal += bestPricedOption.total;
+          return acc;
+        }, starterOrderCombo);
+        const comboPrice = comboOrder.grandTotal;
+        const invCount = comboOrder.orders.reduce((total, o) => o.inventory.length + total, 0);
+        if (comboPrice < bestPrice && invCount === orderCount) { // remove the bad combos
+          bestPrice = comboPrice;
+          bestOrder = comboOrder;
+        }
+      }
+    });
+
+    bestOrder = { ...bestOrder, orderNumber: orderNum }; // add the orderNumber at the root for easier reading
+    return bestOrder;
+  };
+
+  return { setOrderOptions, createOrderOptions, findBestPricedCombination };
 };

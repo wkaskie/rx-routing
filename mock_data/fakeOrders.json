@@ -37,7 +37,7 @@
         "quantity": 4
       },
       {
-        "drug": "Illegal Drug",
+        "drug": "IllegalDrug",
         "quantity": 400
       }
     ]
