@@ -1,40 +1,545 @@
-{
-  "message": "Inventory",
-  "data": [
-    {
-      "pharmacy": "Waldrugs",
-      "inventory": [
-        { "cost": 1, "drug": "Ruxapam" },
-        { "cost": 12, "drug": "Waynazine" },
-        { "cost": 18, "drug": "Funnacil" },
-        { "cost": 9, "drug": "Gethighanol" },
-        { "cost": 4, "drug": "Steriods" },
-        { "cost": 3, "drug": "Moreaseptic" }
-      ]
-    },
-    {
-      "pharmacy": "Druggreens",
-      "inventory": [
-        { "cost": 2, "drug": "Ruxapam" },
-        { "cost": 11, "drug": "Waynazine" },
-        { "cost": 17, "drug": "Funnacil" },
-        { "cost": 10, "drug": "Gethighanol" },
-        { "cost": 5, "drug": "Ropeadope" },
-        { "cost": 3, "drug": "Steriods" },
-        { "cost": 9, "drug": "Amnetivil" },
-        { "cost": 6, "drug": "Moreaseptic" }
-      ]
-    },
-    {
-      "pharmacy": "Drugaide",
-      "inventory": [
-        { "cost": 1, "drug": "Ruxapam" },
-        { "cost": 10, "drug": "Gethighanol" },
-        { "cost": 3, "drug": "Ropeadope" },
-        { "cost": 5, "drug": "Steriods" },
-        { "cost": 18, "drug": "Amnetivil" },
-        { "cost": 2.5, "drug": "Moreaseptic" }
-      ]
-    }
-  ]
-}
+[
+  {
+    "pharmacy": "Enersave",
+    "location": 91342,
+    "quantiy": 30,
+    "inventory": [
+      {
+        "id": 0,
+        "drug": "Gethighanol",
+        "cost": 24
+      },
+      {
+        "id": 1,
+        "drug": "Moreaseptic",
+        "cost": 10
+      },
+      {
+        "id": 2,
+        "drug": "Funnacil",
+        "cost": 3
+      },
+      {
+        "id": 3,
+        "drug": "Ruxapam",
+        "cost": 5
+      },
+      {
+        "id": 4,
+        "drug": "Amnetivil",
+        "cost": 12
+      },
+      {
+        "id": 5,
+        "drug": "Amnetivil",
+        "cost": 23
+      },
+      {
+        "id": 6,
+        "drug": "Ruxapam",
+        "cost": 12
+      },
+      {
+        "id": 7,
+        "drug": "Gethighanol",
+        "cost": 13
+      },
+      {
+        "id": 8,
+        "drug": "Amnetivil",
+        "cost": 14
+      },
+      {
+        "id": 9,
+        "drug": "Moreaseptic",
+        "cost": 17
+      }
+    ]
+  },
+  {
+    "pharmacy": "Zentility",
+    "location": 33708,
+    "quantiy": 9,
+    "inventory": [
+      {
+        "id": 0,
+        "drug": "Waynazine",
+        "cost": 22
+      },
+      {
+        "id": 1,
+        "drug": "Moreaseptic",
+        "cost": 24
+      },
+      {
+        "id": 2,
+        "drug": "Steriods",
+        "cost": 21
+      },
+      {
+        "id": 3,
+        "drug": "Waynazine",
+        "cost": 15
+      },
+      {
+        "id": 4,
+        "drug": "Amnetivil",
+        "cost": 4
+      },
+      {
+        "id": 5,
+        "drug": "Gethighanol",
+        "cost": 13
+      },
+      {
+        "id": 6,
+        "drug": "Moreaseptic",
+        "cost": 25
+      },
+      {
+        "id": 7,
+        "drug": "Steriods",
+        "cost": 16
+      },
+      {
+        "id": 8,
+        "drug": "Waynazine",
+        "cost": 8
+      },
+      {
+        "id": 9,
+        "drug": "Moreaseptic",
+        "cost": 22
+      },
+      {
+        "id": 10,
+        "drug": "Gethighanol",
+        "cost": 20
+      },
+      {
+        "id": 11,
+        "drug": "Funnacil",
+        "cost": 19
+      },
+      {
+        "id": 12,
+        "drug": "Waynazine",
+        "cost": 1
+      }
+    ]
+  },
+  {
+    "pharmacy": "Teraprene",
+    "location": 1608,
+    "quantiy": 26,
+    "inventory": [
+      {
+        "id": 0,
+        "drug": "Moreaseptic",
+        "cost": 22
+      },
+      {
+        "id": 1,
+        "drug": "Ruxapam",
+        "cost": 18
+      },
+      {
+        "id": 2,
+        "drug": "Funnacil",
+        "cost": 23
+      },
+      {
+        "id": 3,
+        "drug": "Waynazine",
+        "cost": 9
+      },
+      {
+        "id": 4,
+        "drug": "Amnetivil",
+        "cost": 22
+      },
+      {
+        "id": 5,
+        "drug": "Ruxapam",
+        "cost": 18
+      },
+      {
+        "id": 6,
+        "drug": "Moreaseptic",
+        "cost": 10
+      },
+      {
+        "id": 7,
+        "drug": "Moreaseptic",
+        "cost": 14
+      },
+      {
+        "id": 8,
+        "drug": "Steriods",
+        "cost": 7
+      },
+      {
+        "id": 9,
+        "drug": "Ruxapam",
+        "cost": 22
+      },
+      {
+        "id": 10,
+        "drug": "Moreaseptic",
+        "cost": 16
+      }
+    ]
+  },
+  {
+    "pharmacy": "Zentix",
+    "location": 8879,
+    "quantiy": 11,
+    "inventory": [
+      {
+        "id": 0,
+        "drug": "Moreaseptic",
+        "cost": 25
+      },
+      {
+        "id": 1,
+        "drug": "Moreaseptic",
+        "cost": 15
+      },
+      {
+        "id": 2,
+        "drug": "Moreaseptic",
+        "cost": 19
+      },
+      {
+        "id": 3,
+        "drug": "Ruxapam",
+        "cost": 2
+      },
+      {
+        "id": 4,
+        "drug": "Moreaseptic",
+        "cost": 10
+      },
+      {
+        "id": 5,
+        "drug": "Steriods",
+        "cost": 13
+      },
+      {
+        "id": 6,
+        "drug": "Funnacil",
+        "cost": 15
+      },
+      {
+        "id": 7,
+        "drug": "Steriods",
+        "cost": 6
+      },
+      {
+        "id": 8,
+        "drug": "Waynazine",
+        "cost": 5
+      },
+      {
+        "id": 9,
+        "drug": "Waynazine",
+        "cost": 16
+      }
+    ]
+  },
+  {
+    "pharmacy": "Magneato",
+    "location": 83864,
+    "quantiy": 20,
+    "inventory": [
+      {
+        "id": 0,
+        "drug": "Waynazine",
+        "cost": 17
+      },
+      {
+        "id": 1,
+        "drug": "Waynazine",
+        "cost": 12
+      },
+      {
+        "id": 2,
+        "drug": "Funnacil",
+        "cost": 18
+      },
+      {
+        "id": 3,
+        "drug": "Ruxapam",
+        "cost": 19
+      },
+      {
+        "id": 4,
+        "drug": "Funnacil",
+        "cost": 25
+      },
+      {
+        "id": 5,
+        "drug": "Amnetivil",
+        "cost": 13
+      },
+      {
+        "id": 6,
+        "drug": "Funnacil",
+        "cost": 18
+      },
+      {
+        "id": 7,
+        "drug": "Waynazine",
+        "cost": 3
+      },
+      {
+        "id": 8,
+        "drug": "Moreaseptic",
+        "cost": 22
+      },
+      {
+        "id": 9,
+        "drug": "Steriods",
+        "cost": 19
+      },
+      {
+        "id": 10,
+        "drug": "Steriods",
+        "cost": 3
+      },
+      {
+        "id": 11,
+        "drug": "Waynazine",
+        "cost": 19
+      },
+      {
+        "id": 12,
+        "drug": "Waynazine",
+        "cost": 18
+      }
+    ]
+  },
+  {
+    "pharmacy": "Mediot",
+    "location": 89081,
+    "quantiy": 30,
+    "inventory": [
+      {
+        "id": 0,
+        "drug": "Gethighanol",
+        "cost": 10
+      },
+      {
+        "id": 1,
+        "drug": "Amnetivil",
+        "cost": 10
+      },
+      {
+        "id": 2,
+        "drug": "Steriods",
+        "cost": 15
+      },
+      {
+        "id": 3,
+        "drug": "Gethighanol",
+        "cost": 25
+      },
+      {
+        "id": 4,
+        "drug": "Waynazine",
+        "cost": 21
+      },
+      {
+        "id": 5,
+        "drug": "Amnetivil",
+        "cost": 10
+      },
+      {
+        "id": 6,
+        "drug": "Ruxapam",
+        "cost": 2
+      },
+      {
+        "id": 7,
+        "drug": "Gethighanol",
+        "cost": 14
+      }
+    ]
+  },
+  {
+    "pharmacy": "Venoflex",
+    "location": 78216,
+    "quantiy": 16,
+    "inventory": [
+      {
+        "id": 0,
+        "drug": "Steriods",
+        "cost": 16
+      },
+      {
+        "id": 1,
+        "drug": "Amnetivil",
+        "cost": 4
+      },
+      {
+        "id": 2,
+        "drug": "Moreaseptic",
+        "cost": 13
+      },
+      {
+        "id": 3,
+        "drug": "Steriods",
+        "cost": 17
+      },
+      {
+        "id": 4,
+        "drug": "Steriods",
+        "cost": 6
+      },
+      {
+        "id": 5,
+        "drug": "Waynazine",
+        "cost": 13
+      },
+      {
+        "id": 6,
+        "drug": "Steriods",
+        "cost": 1
+      },
+      {
+        "id": 7,
+        "drug": "Funnacil",
+        "cost": 14
+      },
+      {
+        "id": 8,
+        "drug": "Ruxapam",
+        "cost": 20
+      },
+      {
+        "id": 9,
+        "drug": "Gethighanol",
+        "cost": 25
+      },
+      {
+        "id": 10,
+        "drug": "Gethighanol",
+        "cost": 24
+      },
+      {
+        "id": 11,
+        "drug": "Waynazine",
+        "cost": 12
+      }
+    ]
+  },
+  {
+    "pharmacy": "Ronelon",
+    "location": 90007,
+    "quantiy": 21,
+    "inventory": [
+      {
+        "id": 0,
+        "drug": "Moreaseptic",
+        "cost": 12
+      },
+      {
+        "id": 1,
+        "drug": "Funnacil",
+        "cost": 24
+      },
+      {
+        "id": 2,
+        "drug": "Gethighanol",
+        "cost": 23
+      },
+      {
+        "id": 3,
+        "drug": "Funnacil",
+        "cost": 20
+      },
+      {
+        "id": 4,
+        "drug": "Moreaseptic",
+        "cost": 24
+      },
+      {
+        "id": 5,
+        "drug": "Moreaseptic",
+        "cost": 24
+      },
+      {
+        "id": 6,
+        "drug": "Waynazine",
+        "cost": 22
+      },
+      {
+        "id": 7,
+        "drug": "Gethighanol",
+        "cost": 1
+      },
+      {
+        "id": 8,
+        "drug": "Gethighanol",
+        "cost": 5
+      }
+    ]
+  },
+  {
+    "pharmacy": "Kegular",
+    "location": 27939,
+    "quantiy": 4,
+    "inventory": [
+      {
+        "id": 0,
+        "drug": "Steriods",
+        "cost": 25
+      },
+      {
+        "id": 1,
+        "drug": "Waynazine",
+        "cost": 19
+      },
+      {
+        "id": 2,
+        "drug": "Gethighanol",
+        "cost": 16
+      },
+      {
+        "id": 3,
+        "drug": "Funnacil",
+        "cost": 19
+      },
+      {
+        "id": 4,
+        "drug": "Moreaseptic",
+        "cost": 10
+      },
+      {
+        "id": 5,
+        "drug": "Gethighanol",
+        "cost": 5
+      },
+      {
+        "id": 6,
+        "drug": "Moreaseptic",
+        "cost": 1
+      },
+      {
+        "id": 7,
+        "drug": "Moreaseptic",
+        "cost": 24
+      },
+      {
+        "id": 8,
+        "drug": "Waynazine",
+        "cost": 19
+      },
+      {
+        "id": 9,
+        "drug": "Amnetivil",
+        "cost": 2
+      }
+    ]
+  }
+]

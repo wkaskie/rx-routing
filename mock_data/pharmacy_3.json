@@ -1,11 +1,61 @@
 {
-  "pharmacy": "Drugaide",
+  "pharmacy": "Teraprene",
+  "location": 1608,
   "inventory": [
-    { "cost": 2, "drug": "Ruxapam" },
-    { "cost": 10, "drug": "Gethighanol" },
-    { "cost": 3, "drug": "Ropeadope" },
-    { "cost": 5, "drug": "Steriods" },
-    { "cost": 18, "drug": "Amnetivil" },
-    { "cost": 2.5, "drug": "Moreaseptic" }
+    {
+      "id": 0,
+      "drug": "Moreaseptic",
+      "cost": 22
+    },
+    {
+      "id": 1,
+      "drug": "Ruxapam",
+      "cost": 18
+    },
+    {
+      "id": 2,
+      "drug": "Funnacil",
+      "cost": 23
+    },
+    {
+      "id": 3,
+      "drug": "Waynazine",
+      "cost": 9
+    },
+    {
+      "id": 4,
+      "drug": "Amnetivil",
+      "cost": 22
+    },
+    {
+      "id": 5,
+      "drug": "Ruxapam",
+      "cost": 18
+    },
+    {
+      "id": 6,
+      "drug": "Moreaseptic",
+      "cost": 10
+    },
+    {
+      "id": 7,
+      "drug": "Moreaseptic",
+      "cost": 14
+    },
+    {
+      "id": 8,
+      "drug": "Steriods",
+      "cost": 7
+    },
+    {
+      "id": 9,
+      "drug": "Ruxapam",
+      "cost": 22
+    },
+    {
+      "id": 10,
+      "drug": "Moreaseptic",
+      "cost": 16
+    }
   ]
 }

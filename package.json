@@ -19,9 +19,12 @@
   },
   "homepage": "https://github.com/wkaskie/rx-routing#readme",
   "dependencies": {
+    "@googlemaps/google-maps-services-js": "^3.1.5",
+    "@types/md5": "^2.2.0",
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "fetch": "^1.1.0",
+    "md5": "^2.3.0",
     "ts-node-dev": "^1.0.0-pre.56",
     "typescript": "^3.9.7"
   },

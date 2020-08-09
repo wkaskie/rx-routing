@@ -1,0 +1,56 @@
+{
+  "pharmacy": "Zentix",
+  "location": 8879,
+  "inventory": [
+    {
+      "id": 0,
+      "drug": "Moreaseptic",
+      "cost": 25
+    },
+    {
+      "id": 1,
+      "drug": "Moreaseptic",
+      "cost": 15
+    },
+    {
+      "id": 2,
+      "drug": "Moreaseptic",
+      "cost": 19
+    },
+    {
+      "id": 3,
+      "drug": "Ruxapam",
+      "cost": 2
+    },
+    {
+      "id": 4,
+      "drug": "Moreaseptic",
+      "cost": 10
+    },
+    {
+      "id": 5,
+      "drug": "Steriods",
+      "cost": 13
+    },
+    {
+      "id": 6,
+      "drug": "Funnacil",
+      "cost": 15
+    },
+    {
+      "id": 7,
+      "drug": "Steriods",
+      "cost": 6
+    },
+    {
+      "id": 8,
+      "drug": "Waynazine",
+      "cost": 5
+    },
+    {
+      "id": 9,
+      "drug": "Waynazine",
+      "cost": 16
+    }
+  ]
+}
