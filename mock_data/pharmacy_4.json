@@ -1,7 +1,6 @@
 {
   "pharmacy": "Zentix",
   "location": 8879,
-  "quantiy": 11,
   "inventory": [
     {
       "id": 0,

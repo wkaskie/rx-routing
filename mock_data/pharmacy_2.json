@@ -1,7 +1,6 @@
 {
   "pharmacy": "Zentility",
   "location": 33708,
-  "quantiy": 9,
   "inventory": [
     {
       "id": 0,

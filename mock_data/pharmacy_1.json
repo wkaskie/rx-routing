@@ -1,7 +1,6 @@
 {
   "pharmacy": "Enersave",
   "location": 91342,
-  "quantiy": 30,
   "inventory": [
     {
       "id": 0,

@@ -1,7 +1,6 @@
 {
   "pharmacy": "Teraprene",
   "location": 1608,
-  "quantiy": 26,
   "inventory": [
     {
       "id": 0,

@@ -1,7 +1,6 @@
 {
   "pharmacy": "Magneato",
   "location": 83864,
-  "quantiy": 20,
   "inventory": [
     {
       "id": 0,

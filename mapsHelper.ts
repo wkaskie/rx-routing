@@ -6,10 +6,11 @@
 import { Client, Status, LatLng } from '@googlemaps/google-maps-services-js';
 
 const client = new Client({});
-const apiKey = process.env.MAPS_API_KEY || '';
+const apiKey = process.env.MAPS_API_KEY || null;
 
 export const mapsHelper = () => {
   const getGeoCode = async (zip: string): Promise<LatLng | undefined> => {
+    if (!apiKey) return;
     let lat;
     let lng;
     let address = zip;
@@ -26,8 +27,8 @@ export const mapsHelper = () => {
         const {
           data: { results },
         } = response;
-        if (!results[0].geometry) {
-            console.log('Bad Zipcode');
+        if (!results[0] || !results[0].geometry) {
+            console.log('Bad Zipcode for ', address);
             return;
         }
         lat = results[0].geometry.location.lat;
@@ -52,7 +53,7 @@ export const mapsHelper = () => {
     // given the origin and destination, return the distance between the two
     // const origins: LatLng[] = [{lat: 40.6655101, lng: -73.89188969999998} as LatLng];
     // const destinations: LatLng[] = [{lat: 40.6905615, lng: -73.9976592} as LatLng];
-
+    if(!apiKey) return 0;
     const response = await client.distancematrix({
       params: {
         origins: [...origins],
@@ -73,5 +74,5 @@ export const mapsHelper = () => {
     return value; // returns the distance in meters
   };
 
-  return { getGeoCode, estimateOrderDistance };
+  return { getGeoCode, estimateOrderDistance, apiKey };
 };
