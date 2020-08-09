@@ -1,12 +1,57 @@
 {
-  "pharmacy": "Waldrugs",
+  "pharmacy": "Enersave",
+  "location": 91342,
+  "quantiy": 30,
   "inventory": [
-    { "cost": 1, "drug": "Ruxapam" },
-    { "cost": 12, "drug": "Waynazine" },
-    { "cost": 18, "drug": "Funnacil" },
-    { "cost": 9, "drug": "Gethighanol" },
-    { "cost": 4, "drug": "Steriods" },
-    { "cost": 8, "drug": "Amnetivil" },
-    { "cost": 3, "drug": "Moreaseptic" }
+    {
+      "id": 0,
+      "drug": "Gethighanol",
+      "cost": 24
+    },
+    {
+      "id": 1,
+      "drug": "Moreaseptic",
+      "cost": 10
+    },
+    {
+      "id": 2,
+      "drug": "Funnacil",
+      "cost": 3
+    },
+    {
+      "id": 3,
+      "drug": "Ruxapam",
+      "cost": 5
+    },
+    {
+      "id": 4,
+      "drug": "Amnetivil",
+      "cost": 12
+    },
+    {
+      "id": 5,
+      "drug": "Amnetivil",
+      "cost": 23
+    },
+    {
+      "id": 6,
+      "drug": "Ruxapam",
+      "cost": 12
+    },
+    {
+      "id": 7,
+      "drug": "Gethighanol",
+      "cost": 13
+    },
+    {
+      "id": 8,
+      "drug": "Amnetivil",
+      "cost": 14
+    },
+    {
+      "id": 9,
+      "drug": "Moreaseptic",
+      "cost": 17
+    }
   ]
 }

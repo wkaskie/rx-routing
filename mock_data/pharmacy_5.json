@@ -1,0 +1,72 @@
+{
+  "pharmacy": "Magneato",
+  "location": 83864,
+  "quantiy": 20,
+  "inventory": [
+    {
+      "id": 0,
+      "drug": "Waynazine",
+      "cost": 17
+    },
+    {
+      "id": 1,
+      "drug": "Waynazine",
+      "cost": 12
+    },
+    {
+      "id": 2,
+      "drug": "Funnacil",
+      "cost": 18
+    },
+    {
+      "id": 3,
+      "drug": "Ruxapam",
+      "cost": 19
+    },
+    {
+      "id": 4,
+      "drug": "Funnacil",
+      "cost": 25
+    },
+    {
+      "id": 5,
+      "drug": "Amnetivil",
+      "cost": 13
+    },
+    {
+      "id": 6,
+      "drug": "Funnacil",
+      "cost": 18
+    },
+    {
+      "id": 7,
+      "drug": "Waynazine",
+      "cost": 3
+    },
+    {
+      "id": 8,
+      "drug": "Moreaseptic",
+      "cost": 22
+    },
+    {
+      "id": 9,
+      "drug": "Steriods",
+      "cost": 19
+    },
+    {
+      "id": 10,
+      "drug": "Steriods",
+      "cost": 3
+    },
+    {
+      "id": 11,
+      "drug": "Waynazine",
+      "cost": 19
+    },
+    {
+      "id": 12,
+      "drug": "Waynazine",
+      "cost": 18
+    }
+  ]
+}
